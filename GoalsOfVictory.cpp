@@ -5,29 +5,28 @@ int main()
     int n;
     int t;
     cin>>t;
-    while (t > 0)
+    while (t --)
     {
-        int s = 0,a[100];
-        cin >> n;
-        // vector<int> a(n - 1);
-        for (int i = 0; i < n - 1; i++)
+        int s = 0,x;
+        cin>>n;
+        
+       
+        
+        for (int i = 0; i < n-1 ; i++)
         {
-            cin >> a[i];
+            cin >> x;
+            s+=x;
         }
-        for (int i = 0; i < n - 1; i++)
+        
+      
+        if (s > 0)
         {
-            s = s + a[i];
-            // cout<<s;
-        }
-        // cout<<s<<endl;
-        if (n % 2 == 0)
-        {
-            cout << -s << endl;
+            cout <<"-"<<s << endl;
         }
         else
         {
             cout << abs(s) << endl;
         }
-        t--;
+       
     }
 }
