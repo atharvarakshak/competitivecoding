@@ -4,7 +4,7 @@ int main()
 {
     int t,i,n,k,count=0;
     cin>>t;
-    while (t>0)
+    while (t--)
     {
         cin>>n>>k;
         vector<long long> a(n);
@@ -14,25 +14,24 @@ int main()
         }
          sort(a.begin(), a.end());
          
-         int count = 0;
-          if(n==1)
-            {
-                cout<<"0"<<endl;
-            }
-          else
-            { 
+         int count = 1,ans=1;
+         
                 for (int i = 1; i < n; i++) 
                 {
            
                     if (a[i] - a[i-1] > k)
                     {
-                        count++;
+                        count=1;
                 
                     }
+                    else{
+                        count++;
+                    }
+                    ans = max(ans,count);
                 }
-             }
-    cout << n -count-1<<"\n";
-    t--;
+             
+        cout << n -ans<<"\n";
+    
     }
     
 }
