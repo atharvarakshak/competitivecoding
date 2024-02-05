@@ -1,9 +1,11 @@
+
 #include<bits/stdc++.h>
 using namespace std;
+
 int main()
 {
-    int a=7;
-    int b=6;
-    // b=a;
-    cout<<(1^3^5^9);
+    int a=1,b=2,c;
+    c=a^b;
+       cout<< c;
+    
 }
