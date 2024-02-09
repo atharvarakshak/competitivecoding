@@ -1,56 +1,50 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define pb push_back
-#define ff first
-#define ss second
-#define mp make_pair
-#define ios ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 using namespace std;
-ll sum_it(ll m) {
-    ll sum=0;
-    while(m) {
-        sum += m%10;
-        m/=10;
-    }
-    return sum;
-}
-int main()
-{   
-    ios;
-    #ifndef ONLINE_JUDGE
-    freopen("input1.txt", "r", stdin);
-    freopen("/Users/sreejith/Desktop/output.txt", "w", stdout);
-    #endif
-    ll t;
-    cin>>t;
-    while(t--) {
-        ll n,b, one = 0 , two = 0;
-        cin>>n;
-        vector < ll > v;
-        for(ll i = 0 ; i < n ; i++) {
-            cin>>b;
-            if(b == 1) 
-                one++;
-            else {
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+	    long long n,two=0;
+	    cin>>n;
+        vector<long long> a(n);
+        map<long long,long long> map;
+        for (int i = 0; i < n; i++)
+        {
+            cin>>a[i];
+            // map[a[i]]++;
+            if(a[i]==2){
                 two++;
-                v.push_back(i+1);
             }
         }
-        if(two&1) {
-            cout<<-1;
-        }
-        else {
-            if(two == 0) {
-                cout<<1;
+        long long  bc=0,m=1,ac=0,b=0,ans=0;
+        for(int i=0;i<n;i++){
+            
+            if(a[i]==2){
+                ac++;
             }
-            else {
-                ll si = v.size()/2;
-                si--;
-                cout<<v[si];
+            if(ac*2==two)
+            {
+                ans =i +1;
+                
+                b=1;
+                break;
             }
+            
         }
-        cout<<endl;
+
+       
+
+        if(b==1){
+            cout<<ans<<endl;
+        }
+        else{
+            cout<<"-1"<<endl;
+
+        }
+        
+       
+        
     }
- 
-    return 0;     
- }
+}
