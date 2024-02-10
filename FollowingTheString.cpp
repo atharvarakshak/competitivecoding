@@ -24,11 +24,3 @@ int main()
         cout<<s<<endl;
     }
 }
-//   if(m[c].size()==0){
-            //     m[c].push_back('a');
-            //     s+='a';
-            // }
-            // else{
-            //     m[c].push_back(m[c][m[c].size()-1]+1);
-            //     s+=m[c][m[c].size()-1];
-            // }
