@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+string numTobits(long long x){
+    string bits="";
+    while(x>0){
+        char bit='0'+(x%2);
+        bits+=bit;
+        x/=2;
+    }
+    while(bits.size()<31)bits+="0";
+    return bits;
+}
+int main()
+{
+    int i,j,t;
+  
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        map<string,long long> mp;
+        vector<long long> a(n);
+        cin>>a;
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+          
+        }
+        long long ans = n;
+        for(int i=0;i<n;i++){
+                long long x = a[i];
+        }
+
+
+    }
+}

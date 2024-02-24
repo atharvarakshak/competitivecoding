@@ -1,17 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
-long long sum(int n){
-    long long s =0;
-    while(n>0){
-                s+=(n%10);
-                n=n/10;
+const int MAX = 200'007;
+int res[MAX];
+
+long long sum(int x){
+    long long res =0;
+    while(x){
+                res+=(x%10);
+                x=x/10;
             }
-            return s;
+            return res;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    res[0] = 0;
+	for (int i = 1; i < MAX; i++) {
+		res[i] = res[i - 1] + sum(i);
+	}
     int i,j,t;
   
     cin>>t;
@@ -19,23 +26,6 @@ int main()
     {
         long long n,s=0,c=0,x=0;
         cin>>n;
-        vector<long long> v(n);
-        for(int i=1;i<=n;i++){
-            // cout<<i<<endl;
-            v[i-1]==i;
-            c++;
-            if(c>=10){
-                
-                v[i-1]=i-(9*x);
-            }
-            else{
-
-            }
-            
-            x++;
-            
-        }
-       
-        cout<<s<<endl;
+        cout<<res[n];
     }
 }
