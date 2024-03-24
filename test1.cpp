@@ -3,8 +3,17 @@ using namespace std;
 
 int main(){
        cout<<(2^2);
-       cout<<"hello world";
-      cout<<"testing xor";
-       cout<<"pull request sucessful";
+      class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]==nums[i-1]){
+                return nums[i];
+            }
+        }
+        return 0;
+    }
+};
 }
    
