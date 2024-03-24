@@ -3,5 +3,6 @@ using namespace std;
 
 int main(){
        cout<<(2^2);
+       cout<<"hello world";
 }
    
