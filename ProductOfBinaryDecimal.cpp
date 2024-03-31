@@ -3,27 +3,50 @@ using namespace std;
 
 void solve(int n) {
 
-    if (n == 1) {
-        cout << "NO\n";
-        return;
-    }
-    
+ 
+    vector<int> v;
+    v.push_back(10);
+    v.push_back(11);
+    int i=0;
 
-    string s = to_string(n);
-    if (s.find_first_not_of("01") == string::npos) {    
-        cout << "YES\n";
-        return;
+    while(true){
+        if(i>=v.size()){
+            break;
+        }
+        
+        int x = v[i]*10;
+        int y = (x)+1;
+        if(x<=n){
+
+            v.push_back(x);
+        }
+        if(y<=n){
+
+            v.push_back(y);
+        }
+        i++;
+
     }
-    
-    // Check if n has a factor other than 1 that is not a power of 2
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0 && __builtin_popcount(i) > 1 && __builtin_popcount(n / i) > 1) {
-            cout << "YES\n";
-            return;
+    reverse(v.begin(),v.end());
+    while(n>1){
+        bool ok = false;
+        for(int i=0;i<v.size();i++){
+            if(n%v[i]==0){
+                n/=v[i];
+                ok = true;
+            }
+        }
+        if(!ok){
+            break;
         }
     }
-    
-    cout << "NO\n";
+    if(n==1){
+        cout<<"YES"<<endl;
+    }
+    else{
+        
+        cout<<"NO"<<endl;
+    }
 }
 
 int main() {
@@ -32,7 +55,7 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        solve(n);
+       solve(n);
     }
     return 0;
 }
