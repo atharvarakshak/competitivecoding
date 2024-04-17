@@ -8,17 +8,17 @@ int main() {
     while (t--) {
         int n,a,b;
         cin>>n>>a>>b;
-        if(2*a>=b){
-
-        if(n%2==0){
-            cout<<(n/2)*b<<endl;
+        if(b<2*a){
+            if(n%2==1){
+                cout<<(n/2)*b + a<<endl;
+            }
+            else{
+                cout<<(n/2)*b<<endl; 
+            }
         }
         else{
-             cout<<(n/2)*b + a<<endl;
-        }
-        }
-        else{
-              cout<<(n)*a<<endl;
+            cout<<(n)*a<<endl; 
+            
         }
     }
 }
