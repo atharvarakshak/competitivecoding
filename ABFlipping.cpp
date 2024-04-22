@@ -2,42 +2,43 @@
 using namespace std;
 int main()
 {
-    int t, i, n, k, count;
+    int t;
     cin >> t;
     while (t--)
     {
-        cin >> n;
-        string s;
-        cin >> s;
-        count = 0, k = 0;
-        for (int i = 0; i < s.length() - 1; i++)
-        {
-            if (count <= s.length())
-            {
+        long long n,k;
+        cin >> n>>k;
+   
+       
+        long long p=1 ;
+        while(pow(2,p)-1<=k){
 
-                if (s[i] == 'A' && s[i + 1] == 'B')
-                {
-                    swap(s[i], s[i + 1]);
-                    count++;
-                    k++;
-                   
-                }
-                else
-                {
-                    continue;
-                }
-                 if (i == s.length() - 2)
-                    {
-
-                        i = 0;
-                    }
-            }
-            else
-            {
-                break;
-            }
-          
+            p++;
         }
-        cout << k << endl;
+        if(n==1){
+            cout<<k<<endl;
+        }
+       
+        else{
+             if(n==2){
+            cout<<int( pow(2,p-1) - 1)<<" ";
+             cout<<int((k-(pow(2,p-1) - 1)));
+           
+            }
+            else {
+
+            // cout<<;
+            cout<<int( pow(2,p-1) - 1)<<" ";
+            cout<<int((k-(pow(2,p-1) - 1)))<<" ";
+            for(int i=0;i<n-2;i++){
+                cout<<"0 ";
+            }
+            }
+            cout<<endl;
+        }
+
+
+        
+        
     }
 }
