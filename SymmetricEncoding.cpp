@@ -30,7 +30,7 @@ int main() {
             {
                     s[i]=m[s[i]];
             }
-            cout<<s<<endl;
+            cout<<s<<endl;valerieAgainstEveryone
             
 
         }
