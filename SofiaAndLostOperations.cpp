@@ -6,7 +6,7 @@ void solve(){
      ll n, m;
         cin >> n;
         vector<ll> a(n), b(n);
-        map<ll, ll> mp;
+        map<ll, ll> extra;
         for (int i = 0; i < n; i++)
         {
             cin >> a[i];
@@ -25,39 +25,34 @@ void solve(){
         ll c = 0;
         for (int i = 0; i < m; i++)
         {
-           mp[d[i]]++;
+           extra[d[i]]++;
         }
         
         ll cp = 0;
         bool ok = false;
-       for (int i = 0; i < n; i++)
-       {
-            if(b[i]==mp[m-1]){
-                ok = true;
-            }
-            if( a[i]!=b[i]){
-                if(mp[b[i]]>0){
-
-                mp[b[i]]--;
-                if(mp[b[i]]==0){
-                    mp.erase(b[i]);
-                }
-                }
-                else{
-                    cout<<"NO\n";
-                    return;
+      for(int i=0;i<n;i++){
+        if(b[i]==d[m-1])ok=true;
+        if(a[i]!=b[i]){
+            if(extra[b[i]]>0){
+                extra[b[i]]--;
+                if(extra[b[i]]==0){
+                    extra.erase(b[i]);
                 }
             }
-       }
-       if(!ok && mp.size()>0){
-                    cout<<"NO\n";
-                
+            else{
+                cout<<"NO\n";
+                return;
+            }
+        }
+    }
+    if(extra.size()>0&&ok==false){
+                cout<<"NO\n";
 
-       }
-       else{
-                    cout<<"YES\n";
+    } else {
+                cout<<"YES\n";
 
-       }
+    }
+       return;
 }
 int main()
 {
