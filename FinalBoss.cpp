@@ -52,39 +52,67 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int solve()
-{
+{   
+    ll h ,n;
+    cin>>h>>n;
+    vll a(n),c(n);
+    f(i,0,n)cin>>a[i];
+    f(i,0,n)cin>>c[i];
 
-	ll x,y,z,k,ans=0;
-	cin>>x>>y>>z>>k;
+  
 
-	cf(i,1,x){
-		cf(j,1,y){
+    f(i,0,n){
+        h-=a[i];
+    }
+  
+    if(h<=0){
 
-			if(k%(i*j)==0 && k/(i*j)<=z){
-				ll w = k/(i*j);
-				ll positions = (x-i+1) * (y-j+1) * (z-w+1);
+        cout<<"1\n";
 
-				ans= max(ans,positions);
+    
+    }
+    else{
+    ll l=0;
+    ll r=1e12;
+    ll ans=0;
+        while(l<=r){
+            ll mid = (l+r)>>1;
+            ll s=0;
 
-			}
-		}
-	}
-	cout<<ans<<endl;
+            for(int i=0;i<n;i++){
+                s += (ll)((mid / c[i]) * a[i]);
+                if (s >= h)
+                    break;
 
-	return 0;
+            }
+            if(h-s<=0){
+                ans=mid;
+                r=mid-1;
+
+            }
+            else{
+                
+                l=mid+1;
+            }
+        }
+        cout<<ans+1<<endl;
+    }
+
+
+    return 0;
 }
 
 
 /* Main()  function */
 int main()
 {
-	int tc=1;
-	cin>>tc;
+    int tc=1;
+    cin>>tc;
 
-	while(tc--)
-	{
-		solve();
-	}
+    while(tc--)
+    {
+        solve();
+    }
 
-	return 0;
+    return 0;
 }
