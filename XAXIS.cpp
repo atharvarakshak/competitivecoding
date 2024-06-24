@@ -53,34 +53,17 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-  ll n, m;
-    cin >> n >> m;
-    string s, c;
-    cin >> s;
-    vi a(m);
-    f(i, 0, m) {
-        cin >> a[i];
-        a[i]--; // Convert to 0-based index
-    }
-    cin >> c;
+   ll x1,x2,x3;
+   cin>>x1>>x2>>x3;
+   vll v;
+   v.pb(x1);
+   v.pb(x2);
+   v.pb(x3);
+   sort(v.rbegin(),v.rend());
+    ll m = (v[0]+v[1])/2;
+    cout<<abs(x1-v[1])+abs(x2-v[1])+abs(x3-v[1])<<endl;
 
-    // Sort the indices and characters independently
-    sort(a.begin(), a.end());
-    sort(c.begin(), c.end());
-
-    // Apply the sorted characters to the sorted indices
-    f(i, 0, m) {
-		if(c[i]<s[a[i]]){
-        s[a[i]] = c[i];
-
-		}
-		else{
-			
-		}
-    }
-
-    cout << s << endl;
-
+   
     return 0;
 }
 
