@@ -53,50 +53,16 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-   ll x,y,k,steps;
+    ll n,s=0;
+    cin>>n;
 
-
-   cin>>x>>y>>k;
-
-
-
-   while(k>0 && x>1){
-
-        steps = y - (x%y);
-
-        if(steps>=k){
-            x+=k;
-            k=0;
-        }
-        else{
-            x+=steps;
-            k-=steps;
-
-        }
-
-        while(x%y==0){
-            x/=y;
-        }
-
-   }
-   if(k>0){
-
-        k%=(y-1);
-        x+=k;
-        while(x%y==0){
-            x/=y;
-
-        }
-   }
-
-   cout<<x<<endl;
-   
-
-
+    
+     cout<<((((n*(n+1))%MOD)*(4*n-1))%MOD*337)%MOD<<endl;
     return 0;
 }
 
 
+/* Main()  function */
 int main()
 {
  ios_base::sync_with_stdio(false);

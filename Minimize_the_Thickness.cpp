@@ -51,52 +51,36 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+ll n;
+vll a(2020);
+ll helper(ll i,ll sum){
+    if(i==n)    return 0;
+
+    for(ll j=i+1,c=0;j<=n;j++){
+        c+=a[j-1];
+        if(c>sum){
+            return n;
+
+        }
+        if(c==sum){
+            return max(j-i,helper(j,sum));
+        }
+    }
+    return n;
+}
+
 int solve()
 {
-   ll x,y,k,steps;
-
-
-   cin>>x>>y>>k;
-
-
-
-   while(k>0 && x>1){
-
-        steps = y - (x%y);
-
-        if(steps>=k){
-            x+=k;
-            k=0;
-        }
-        else{
-            x+=steps;
-            k-=steps;
-
-        }
-
-        while(x%y==0){
-            x/=y;
-        }
-
-   }
-   if(k>0){
-
-        k%=(y-1);
-        x+=k;
-        while(x%y==0){
-            x/=y;
-
-        }
-   }
-
-   cout<<x<<endl;
-   
-
-
-    return 0;
+    ll ans = n;
+    for(ll i=1,sum=0;i<n;i++){
+       sum+=a[i-1] ;
+       ans = min(ans, helper(0,sum)); 
+         }
+    return ans;
 }
 
 
+/* Main()  function */
 int main()
 {
  ios_base::sync_with_stdio(false);
@@ -106,8 +90,11 @@ cin.tie(NULL);
 
     while(tc--)
     {
-        solve();
+        cin>>n;
+        f(i,0,n)cin>>a[i];
+            
+        
+        cout<<solve()<<endl;
     }
-
     return 0;
 }

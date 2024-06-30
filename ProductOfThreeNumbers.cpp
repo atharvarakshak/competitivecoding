@@ -37,11 +37,6 @@ string to_upper(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='a' && a
 string to_lower(string a) { for (int i=0;i<(int)a.size();++i) if (a[i]>='A' && a[i]<='Z') a[i]+='a'-'A'; return a; }
 bool prime(ll a) { if (a==1) return 0; for (int i=2;i<=round(sqrt(a));++i) if (a%i==0) return 0; return 1; }
 
-/*  All Required define Pre-Processors and typedef Constants */
-typedef long int int32;
-typedef unsigned long int uint32;
-typedef long long int int64;
-typedef unsigned long long int  uint64;
 
 
 
@@ -53,50 +48,40 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-   ll x,y,k,steps;
-
-
-   cin>>x>>y>>k;
-
-
-
-   while(k>0 && x>1){
-
-        steps = y - (x%y);
-
-        if(steps>=k){
-            x+=k;
-            k=0;
+    ll n;
+    cin>>n;
+    set<ll> used;
+    for(int i=2;i*i<=n;i++){
+        if(n%i==0 && !used.count(i)){
+            used.insert(i);
+            n/=i;
+            break;
         }
-        else{
-            x+=steps;
-            k-=steps;
-
+    }
+    for(int i=2;i*i<=n;i++){
+        if(n%i==0 && !used.count(i)){
+            used.insert(i);
+            n/=i;
+            break;
         }
-
-        while(x%y==0){
-            x/=y;
+    }
+    if(used.size()<2 ||used.count(n) || n==1){
+        cout<<"NO\n";
+    }
+    else{
+        cout<<"YES\n";
+        used.insert(n);
+        for(auto i : used){
+            cout<<i<<" ";
         }
+        cout<<endl;
 
-   }
-   if(k>0){
-
-        k%=(y-1);
-        x+=k;
-        while(x%y==0){
-            x/=y;
-
-        }
-   }
-
-   cout<<x<<endl;
-   
-
-
+    }
     return 0;
 }
 
 
+/* Main()  function */
 int main()
 {
  ios_base::sync_with_stdio(false);
