@@ -51,20 +51,25 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 int solve()
 {
-    ll n,c=0;
-    cin>>n;
-
-    for(ll i=n;i<2*n;i++){
-        
-            cout<<i<<" ";   
-        
+    int n,l,r;
+    cin>>n>>l>>r;
+    vector<int> ans(n+1);
+    ans[1]=l;
+    for(int i=2;i<=n;i++){
+        int temp = (r/i)*i;
+        if(temp<l || temp>r){
+            cout<<"NO\n";
+            return 0;
+        }
+        ans[i] = temp;
     }
-
-
-
+    cout<<"YES\n";
+    for(int i=1;i<=n;i++){
+        cout<<ans[i]<<" ";
+    }
+    cout<<"\n";
     return 0;
 }
 
@@ -75,7 +80,7 @@ int main()
  ios_base::sync_with_stdio(false);
 cin.tie(NULL);  
     int tc=1;
-    // cin>>tc;
+    cin>>tc;
 
     while(tc--)
     {

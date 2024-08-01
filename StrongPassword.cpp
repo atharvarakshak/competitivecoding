@@ -51,20 +51,50 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 int solve()
 {
-    ll n,c=0;
-    cin>>n;
+     string s;
+     cin>>s;
+     int n = s.length();
+     char c;
 
-    for(ll i=n;i<2*n;i++){
+     c = s[n-1];
+
+    
+     if(n==1){
         
-            cout<<i<<" ";   
+        if(s[n-1]=='z'){
+            c ='a';
+        }
+        s+=c+1;
+     }
+
+     else{
+       for(int i=1;i<n;i++){
+            if(s[i]==s[i-1]){
+                char ch =s[i-1];
+                if(s[i]=='z'){
+                    ch ='a';
+                }
+                else{
+                    ch =s[i-1];
+                }
+                s.insert(i,1,ch+1);
+                break;
+            }
+       }
+       if(s.length()==n){
+    
+        if(s[n-1]=='z'){
+            c ='a';
+        }
         
-    }
+        s+=c+1;
+       }
+     }
+     cout<<s<<endl;
 
-
-
+    
     return 0;
 }
 
@@ -75,7 +105,7 @@ int main()
  ios_base::sync_with_stdio(false);
 cin.tie(NULL);  
     int tc=1;
-    // cin>>tc;
+    cin>>tc;
 
     while(tc--)
     {
