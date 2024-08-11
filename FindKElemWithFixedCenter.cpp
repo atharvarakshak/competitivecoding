@@ -53,36 +53,40 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-     string s,t;
-     cin>>s>>t;
-     ll c=t.length();
-     ll idx=0;
-     for(int i=0;i<s.length();i++){
-       if(s[i]=='?'){
-            if(idx<t.size()){
-            s[i]=t[idx];
-            c--;
+     ll xc,yc,k ;
+     cin>>xc>>yc>>k;
 
-            idx++;
-            }
-       }
-       else if(s[i]==t[idx]){
-        idx++;
-        c--;
-       }
-     }
-     for(int i=0;i<s.length();i++){
-         if(s[i]=='?'){
-             s[i]='a';
-         }
-     }
-     if(c==0){
-         cout<<"YES"<<endl;
-         cout<<s<<endl;
+     if(k%2==0){
+        ll kc = k/2;
+        ll yu = yc-1;
+        while(kc--){
+            cout<<xc<<" "<<yu<<endl;
+            yu--;
+        }
+        kc = k/2;
+        ll yd = yc+1;
+        while(kc--){
+            cout<<xc<<" "<<yd<<endl;
+            yd++;
+        }
      }
      else{
-         cout<<"NO"<<endl;
+        cout<<xc<<" "<<yc<<endl;
+        ll kc = k/2;
+        ll yu = yc-1;
+        while(kc--){
+            cout<<xc<<" "<<yu<<endl;
+            yu--;
+        }
+        kc = k/2;
+        ll yd = yc+1;
+        while(kc--){
+            cout<<xc<<" "<<yd<<endl;
+            yd++;
+        }
      }
+
+     
     return 0;
 }
 
