@@ -57,39 +57,22 @@ int solve()
     cin>>n>>k;
     vector<ll> a(n);
     for(ll i=0;i<n;i++) cin>>a[i];
-    sort(a.begin(),a.end());    
-    for(int i=n-2;i>=0;i-=2){
-        if(k<=0) break;
-      if(a[i+1]-a[i]<=k){
-        a[i]+=(a[i+1]-a[i]);
-        k-=(a[i+1]-a[i]);
-      }    
-      else{
-        a[i]+=k;
-        k-=k;
-        break;
-      }
+    sort(a.rbegin(),a.rend());    
+    for(int i=0;i<n-1;i+=2){
+       ll diff = a[i]-a[i+1];
+       ll x = min(k,diff);
+       a[i+1]+=x;
+       k-=x;
+      
     }
-    int ca=0,cb=0;
+    int ca=0;
     f(i,0,n){
-        if(i%2==0) ca+=a[i];
-        else cb+=a[i];
+       if(i%2==0) ca+=a[i];
+       else ca-=a[i];
     }
-    cout<<abs(ca-cb)<<"\n";
+    cout<<abs(ca)<<"\n";
     return 0;
 }
-// int n,k;
-//     cin>>n>>k;
-//     vector<int> a(n);
-//     for(int i=0;i<n;i++) cin>>a[i];
-//     sort(a.begin(),a.end(),greater<int>());
-//     int diff = 0;
-//     for(int i=0;i<n-1;i+=2){
-//         diff += a[i] - a[i+1];
-//     }
-//     diff = max(0LL,diff-k);
-//     if(n&1) diff += a[n-1];
-//     cout<<diff<<"\n";
 
 /* Main()  function */
 int main()
