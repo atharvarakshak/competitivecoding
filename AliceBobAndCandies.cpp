@@ -54,30 +54,37 @@ typedef unsigned long long int  uint64;
 int solve()
 {
     ll n;
+    cin>>n;
     vll a(n);
     f(i,0,n) cin>>a[i];
 
     ll alice=0,bob=0;
-    alice+=a[0];
-    ll i=1,j=n-1;
-    while(true){
-        ll cbob=0;
-        while(cbob>alice && i<=j){
+    ll suml=0,sumr=0;
+    ll i=0,j=n-1,c=0;
+    while(i<=j){
+        if(c%2==0){
+            ll nsuml=0;
+            while(i<=j && nsuml<=sumr){
+                nsuml+=a[i];
+                i++;
+            }
+            alice+=nsuml;
+            suml=nsuml;
 
-            cbob+=a[j];
-            j--;
         }
-        if(i>j){
-            break;
+        else{
+            ll nsumr=0;
+            while(i<=j && nsumr<=suml){
+                nsumr+=a[j];
+                j--;
+            }
+            bob+=nsumr;
+            sumr=nsumr;
         }
-        bob+=cbob;
-        ll calice= 0 ;
-        while(calice<=cbob && i<=j){
-            calice+=a[i];
-            i++;
-        }
-        alice+=calice;
+      c++;
     }
+
+    cout<<c<<" "<<alice<<" "<<bob<<"\n";
 
 
     return 0;
