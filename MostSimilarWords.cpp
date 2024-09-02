@@ -51,36 +51,40 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+ 
+int diff(string a, string b , int l)
+{
+    int d=0;
+    for(int i=0; i<l ; i++)
+    {
+        int p = a[i];
+        int q = b[i];
+        d += abs(p-q);
+    }
+    //cout<<"fuck"<<d<<endl;
+    return d;
+}
+ 
 int solve()
 {
-       int n;cin>>n;string s;
-    cin>>s;
-    map<char,int>mp;
-    for(auto it:s)mp[it]++;
-    vector<pair<int,char>>v;
-    for(auto it:mp){
-        v.push_back({it.second,it.first});
+  int n, l;
+  cin>>n>>l;
+  vector<string>vec(n);
+  for(int i=0; i<n; i++)
+  {
+    cin>>vec[i];
+  }
+  int res = 100000;
+  for(int i=0; i<n; i++)
+  {
+    for(int j=i; j<n; j++)
+    {
+        if (i==j) continue;
+        res = min(res, diff(vec[i], vec[j], l));
     }
-    sort(v.rbegin(),v.rend());  
-    string ans="";
-    string temp="";
-    for(auto it:v)temp.push_back(it.second);
-    int sum=0;
-    int i=v.size()-1;
-  
-    while(i>=0){
- 
-        int req=v[i].first-sum;
-      
-        for(int j=0;j<req;j++)ans+=temp;
-        sum+=req;
-        // debug(temp)
-        temp.pop_back();
- 
-        i--;
-    }
-    cout<<ans<<endl;
-    return 0;
+  }
+  cout<<res<<endl;
+  return 0;  
 }
 
 
