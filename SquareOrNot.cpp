@@ -53,26 +53,35 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    
-    if(a%2==1){
-        cout<<"NO\n";
-    }
-    else{
-        if(b%2==0){
-            cout<<"YES\n";
+    ll n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int a=0,b=0;
+    f(i,0,n){
+        if(s[i]=='0'){
+            a++;
         }
         else{
-            if(a==0)
-                {
-                    cout<<"NO"<<endl;
-                }
-                else
-                {
-                    cout<<"YES"<<endl;
-                }
+            b++;
         }
+    }
+
+    if ((double)sqrt(n) == floor(sqrt(n))) {
+
+         ll x = (sqrt(n)-2) * (sqrt(n)-2)   ;
+            // cout<<x<<'*'<<endl;
+
+        if(a==x){
+            cout<<"Yes\n";
+        }
+        else{
+            cout<<"No\n";
+
+        }
+    } else {
+            cout<<"No\n";
+
     }
     return 0;
 }

@@ -51,29 +51,56 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+void subarray( vector<ll> &a, vector<ll> &t,ll n){
+
+    ll i=0,j=0,c=0;
+
+    while(i<n){
+
+        while(j<n){
+            if(a[i]==a[j]){
+                j++;
+                c++;
+            }
+            if(j==n-1){
+                return;
+            }
+        }
+
+        t[a[i]] = max(t[a[i]],c);
+
+        i=j;
+        c=0;
+
+    }
+}
+
+
 int solve()
-{
-    ll a,b;
-    cin>>a>>b;
+{   
+    ll n;
+    cin>>n;
+    vector<ll> a(n),b(n);
+    f(i,0,n){
+        cin>>a[i];
+    }
+    f(i,0,n){
+        cin>>b[i];
+    }
+vector<ll> fa(2 * (n + 1), 0), fb(2 * (n + 1), 0);
+
+
+    subarray(a,fa,n);
+    subarray(b,fb,n);
+
+    ll ans=0;
+    for(int i=0;i<fa.size();i++){
+        ans=max(ans,fa[i]+fb[i]);
+    }
+
+    cout<<ans<<endl;
+
     
-    if(a%2==1){
-        cout<<"NO\n";
-    }
-    else{
-        if(b%2==0){
-            cout<<"YES\n";
-        }
-        else{
-            if(a==0)
-                {
-                    cout<<"NO"<<endl;
-                }
-                else
-                {
-                    cout<<"YES"<<endl;
-                }
-        }
-    }
     return 0;
 }
 

@@ -53,27 +53,34 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    
-    if(a%2==1){
-        cout<<"NO\n";
-    }
-    else{
-        if(b%2==0){
-            cout<<"YES\n";
+     ll n,k;
+     cin>>n>>k;
+     map<ll,ll> mp;
+     vll a(n);
+     f(i,0,n){
+            cin>>a[i];
+            
+     }
+     sort(a.begin(),a.end());
+     f(i,0,n){
+         mp[a[i]]++;
+     }
+     if(a[0]!=0){
+            cout<<*min_element(a.begin(),a.end())-1<<endl;
+            return 0;
+     }
+
+     for(auto it : mp){
+
+        if(it.second<=k){
+            cout<<it.first<<endl;
+            return 0;
         }
-        else{
-            if(a==0)
-                {
-                    cout<<"NO"<<endl;
-                }
-                else
-                {
-                    cout<<"YES"<<endl;
-                }
-        }
-    }
+     
+     }
+     cout<<*max_element(a.begin(),a.end())+1<<endl;
+
+
     return 0;
 }
 

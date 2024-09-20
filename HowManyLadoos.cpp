@@ -53,27 +53,35 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    
-    if(a%2==1){
-        cout<<"NO\n";
+    ll n,k;
+    cin>>n;
+    vll a(n),v;
+    f(i,0,n){
+        cin>>a[i];
     }
-    else{
-        if(b%2==0){
-            cout<<"YES\n";
-        }
-        else{
-            if(a==0)
-                {
-                    cout<<"NO"<<endl;
-                }
-                else
-                {
-                    cout<<"YES"<<endl;
-                }
+
+    f(i,0,n){
+        f(j,i+1,n){
+            v.pb(a[i]*a[j]);
         }
     }
+
+    map<ll,ll> mp;
+
+    f(i,0,v.size()){
+        mp[v[i]]++;
+    }
+    ll elem,maxi=0;
+    for(auto it:mp){
+        if(it.second>maxi){
+            maxi=it.second;
+            elem=it.first;
+        }
+    }
+
+    cout<<elem<<endl;
+    // cout<<*max_element(a.begin(),a.end())<<endl;
+
     return 0;
 }
 
@@ -84,7 +92,7 @@ int main()
  ios_base::sync_with_stdio(false);
 cin.tie(NULL);  
     int tc=1;
-    cin>>tc;
+    // cin>>tc;
 
     while(tc--)
     {

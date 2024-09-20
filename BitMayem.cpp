@@ -53,27 +53,39 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-    ll a,b;
-    cin>>a>>b;
-    
-    if(a%2==1){
-        cout<<"NO\n";
-    }
-    else{
-        if(b%2==0){
-            cout<<"YES\n";
+    int N, Y; 
+        cin >> N >> Y;
+        
+        vector<int> a(N); 
+
+
+
+        for (int i = 0; i < N; i++) {
+            cin >> a[i];
         }
-        else{
-            if(a==0)
-                {
-                    cout<<"NO"<<endl;
-                }
-                else
-                {
-                    cout<<"YES"<<endl;
-                }
+
+        int bitwise_or = 0;
+        
+      
+        for (int i = 0; i < N; i++) {
+            bitwise_or |= a[i];
         }
-    }
+        
+        int x = (bitwise_or ^ Y);
+        
+      
+        int final_or = 0;
+        for (int i = 0; i < N; i++) {
+            final_or |= (a[i] ^ x);
+        }
+        
+
+        if (final_or == Y) {
+            cout << x << endl;
+        } else {
+            cout << -1 << endl;
+        }
+
     return 0;
 }
 

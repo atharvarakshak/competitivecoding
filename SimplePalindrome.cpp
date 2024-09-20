@@ -53,27 +53,18 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-    ll a,b;
-    cin>>a>>b;
+    int n;
+   cin >> n;
     
-    if(a%2==1){
-        cout<<"NO\n";
+   string s = "aeiou";
+   string ans;
+    for (int i = 0; i < 5; i++) {
+        int x = n / (5 - i);
+        ans += string(x, s[i]);
+        n -= x;
     }
-    else{
-        if(b%2==0){
-            cout<<"YES\n";
-        }
-        else{
-            if(a==0)
-                {
-                    cout<<"NO"<<endl;
-                }
-                else
-                {
-                    cout<<"YES"<<endl;
-                }
-        }
-    }
+    
+  cout << ans << "\n";
     return 0;
 }
 
