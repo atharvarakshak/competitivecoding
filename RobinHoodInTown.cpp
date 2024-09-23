@@ -51,6 +51,10 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+ll choosex(vector<double> a , double avg){
+    return lower_bound(a.begin(),a.end(),avg)-a.begin();
+}
+
 int solve()
 {
     long long n;
@@ -72,17 +76,38 @@ int solve()
 
     }
     else{
-        int mid = n/2;
+        // int mid = n/2;
 
-        long long temp = a[mid];
+        // long long temp = a[mid];
 
-        if(temp<avg/(2.0)){
+        // if(temp<avg/(2.0)){
 
-            cout<<0<<endl;
-            return 0;
+        //     cout<<0<<endl;
+        //     return 0;
+        // }
+
+        // cout<<2*temp * n -s+1<<endl;
+
+        
+        ll l=0 ,r=1e15;
+        ll ans=-1;
+
+        while(l<=r){
+            ll mid = (l+r)/2;
+
+            double avg = (s+mid)/(n+0.0);
+
+            if(choosex(a,avg/2.0)>n/2){
+                ans=mid;
+                r=mid-1;
+            }
+            else{
+                l=mid+1;
+            }
+
+
         }
-
-        cout<<2*temp * n -s+1<<endl;
+        cout<<ans<<endl;
 
 
     }
