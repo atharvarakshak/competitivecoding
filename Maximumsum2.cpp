@@ -55,41 +55,22 @@ int solve()
 {
       ll n,k,p;
     cin>>n>>k;
-    p=k;
-    vll v(n);
+    
+    vll v(n+1,0),a(n);
     ll s=0,b,m;
     for(int i=0;i<n;i++){
-        cin>>v[i];
-        s+=v[i];
+        cin>>a[i];
+       
     } 
-    b=s;
-    m=s;
 
-    sort(v.begin(),v.end());
+    f(i,0,n){
+        v[i+1]=v[i]+a[i];
+    }
 
-    int i=0,j=n-1;
-    while(k--){
-        if((v[i]+v[i+1])<=v[j]){
-            s-=(v[i]+v[i+1]);
-            i+=2;
-        }
-        else{
-            s-=v[j];
-            j-=1;
-        }
+    f(i,0,k+1){
+        s = max(s,(v[n-(k-i)]-v[2*i]));
     }
-     i=0,j=n-1;
-    k=p;
-    while(k--){
-        b-=v[j];
-        j--;
-    }
-    k=p;
-    while(k--){
-        m-=v[i]+v[i+1];
-        i+=2;
-    }
-    s=max(s,max(b,m));
+   
     cout<<s<<endl;
 
     return 0;
