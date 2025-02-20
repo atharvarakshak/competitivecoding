@@ -51,103 +51,97 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-static const int MAXM = 700; // given constraint
-
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int t;
-    cin >> t;  
-
-    while(t--){
-        int n, m;
-        cin >> n >> m;
-
-        vector<ll> prevRow(m, 0LL), curRow(m, 0LL);
-
-        unordered_map<ll,bool> isInd;
-        isInd.reserve(n * (size_t)m);
-        isInd.max_load_factor(0.7f);
-
-        for(int j = 0; j < m; j++){
-            long long c;
-            cin >> c;
-            curRow[j] = c;
-        }
-
-        for(int j = 0; j < m; j++){
-            ll c = curRow[j];
-            if(!isInd.count(c)){
-                isInd[c] = true; 
-            }
-            if(j > 0 && curRow[j] == curRow[j-1]){
-             
-                isInd[c] = false;
-            }
-        }
+int solve()
+{   
+    ll n,m;
+    cin>>n>>m;
+    vector<vector<ll>> mat(n,vector<ll>(m,0));
     
-        prevRow.swap(curRow);
-
-  
-        for(int i = 1; i < n; i++){
+    vll v(n*m+1,0);
+    for(ll i=0;i<n;i++)
+    {
+        for(ll j=0;j<m;j++)
+        {
+            cin>>mat[i][j];
+            v[mat[i][j]]=1;
             
-
-
-
-            for(int j = 0; j < m; j++){
-
-
-                ll c;
-                cin >> c;
-                curRow[j] = c;
-            }
-
-            for(int j = 0; j < m; j++){
-                ll c = curRow[j];
-                if(!isInd.count(c)){
-                    isInd[c] = true;
-                }
-                if(j > 0 && curRow[j] == curRow[j-1]){
-                    isInd[c] = false;
-                }
-            }
-
-   
-            for(int j = 0; j < m; j++){
-                if(curRow[j] == prevRow[j]){
-                   ll c = curRow[j];
-                    isInd[c] = false;
-                }
-            }
-
-            prevRow.swap(curRow);
         }
-
-        ll S = 0;
-        bool anyNotInd = false;
-        for(auto &kv : isInd){
-            bool ind = kv.second;
-            if(ind){
-                S += 1; 
-            } else {
-                S += 2;  
-                anyNotInd = true;
+    }
+    if(n==1 && m==1)
+    {
+        cout<<0<<endl;
+        return 0;
+    }
+    for(ll i=0;i<n;i++)
+    {
+        for(ll j=0;j<m;j++)
+        {
+           if(j>0){
+            if(mat[i][j]==mat[i][j-1])
+            {
+                v[mat[i][j]]=2;
+                continue;
             }
-        }
-
-  
-        ll answer;
-        if(isInd.empty()){
            
-            answer = 0;
-        } else {
-            answer = S - (anyNotInd ? 2 : 1);
         }
+            if(i>0){
+                if(mat[i][j]==mat[i-1][j])
+                {
+                    v[mat[i][j]]=2;
+                    continue;
+                }
+               
+            }
+            if(i<n-1){
+                if(mat[i][j]==mat[i+1][j])
+                {
+                    v[mat[i][j]]=2;
+                    continue;
+                }
+                
+            }
+            if(j<m-1){
+                if(mat[i][j]==mat[i][j+1])
+                {
+                    v[mat[i][j]]=2;
+                    continue;
+                }
+              
+            }
+            
+        }
+    }
 
-        cout << answer << "\n";
+    ll ans=0,c=0;
+    for(auto x:v)
+    {   
+        // cout<<x.first<<" "<<x.second<<endl;
+       c = max(c,x);
+       ans+=x;
+    }
+  
+
+    cout<<ans-c<<endl;
+
+
+
+
+
+    return 0;
+}
+
+
+/* Main()  function */
+int main()
+{
+ ios_base::sync_with_stdio(false);
+cin.tie(NULL);  
+    int tc=1;
+    cin>>tc;
+
+    while(tc--)
+    {
+        solve();
     }
 
     return 0;
