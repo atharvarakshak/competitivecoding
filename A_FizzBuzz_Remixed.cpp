@@ -53,27 +53,20 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-   ll n;
-    cin>>n;
-    string s;
-        cin >> s;
+    ll n,ans=INT_MAX;
+    cin >> n;
 
-        long long dashCount = 0,underscoreCount=0;
-        for (char c : s) {
-            if (c == '-') {
-                dashCount++;
-            }
-            else{
-                underscoreCount++;
-            }
-        }
+    ll x=n/15;
+    ll y=n%15;
+    
+       
+            ans = min(x*3LL+y+1,x*3+3LL);
 
-        
-        long long ans = (dashCount/2LL )*(( dashCount+1)/2LL)* underscoreCount;
-        cout << ans << "\n";
-
-
-    return 0;
+     
+    
+            cout << ans << "\n";
+    
+      return 0;
 }
 
 

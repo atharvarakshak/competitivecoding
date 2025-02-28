@@ -53,27 +53,54 @@ typedef unsigned long long int  uint64;
 
 int solve()
 {
-   ll n;
-    cin>>n;
-    string s;
-        cin >> s;
+    ll n,x;
+    cin>>n>>x;
+    if(n==1){
+        cout<<x<<endl;
+    }
+    else{
+        ll o = 0;
+		f(i,0,n) {  
+			o |= i;
+		}
+		if(o == x) {
+			f(i,0,n) {
+				cout << i << ' ';
+			}
+			cout << endl;
+			return 0;
+		}
+        vll a;
+        ll bitOr=0,p=0;
+        for(int i=0;i<n-1  ;i++){
+            
+            
+            if((p|x|i)==x){
+                a.push_back(i);
+                bitOr|=i;
 
-        long long dashCount = 0,underscoreCount=0;
-        for (char c : s) {
-            if (c == '-') {
-                dashCount++;
             }
             else{
-                underscoreCount++;
+                break;
+            }
+           
+        }
+        if(a.size()<n){
+            f(i,a.size(),n){
+                a.push_back(x);
+                bitOr|=x;
             }
         }
+        if(bitOr!=x){
+            a[n-1]= x;
+        }
+        f(i,0,a.size()){
+           cout<<a[i]<<" ";
+        }
+        cout<<endl;
+    }
 
-        
-        long long ans = (dashCount/2LL )*(( dashCount+1)/2LL)* underscoreCount;
-        cout << ans << "\n";
-
-
-    return 0;
+    return 0;   
 }
 
 

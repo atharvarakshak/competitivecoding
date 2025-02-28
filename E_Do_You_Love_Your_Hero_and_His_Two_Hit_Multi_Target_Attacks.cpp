@@ -51,28 +51,47 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int find(ll k){
+    ll l =0, r= 500;
+
+    while(l<r){
+        ll mid = (l+r+1)/2;
+
+        if(mid*(mid-1)/2 > k){
+            r = mid-1;
+        }
+        else{
+            l = mid     ;
+
+        }
+    }
+    return l;
+}
+
 int solve()
 {
-   ll n;
-    cin>>n;
-    string s;
-        cin >> s;
+    ll k;
+    cin>>k;
 
-        long long dashCount = 0,underscoreCount=0;
-        for (char c : s) {
-            if (c == '-') {
-                dashCount++;
-            }
-            else{
-                underscoreCount++;
-            }
+    ll x = 0,y=0;
+    vector<pair<ll,ll>> a;
+    // |x1-x2|*|y1-y2|=0
+
+    while(k){
+        ll upd = find(k);
+        f(i,0,upd){
+           
+            a.push_back({x,y++});
         }
+        x++;
 
-        
-        long long ans = (dashCount/2LL )*(( dashCount+1)/2LL)* underscoreCount;
-        cout << ans << "\n";
+        k-=upd*(upd-1)/2;
+    }
 
-
+    cout<<a.size()<<endl;
+    for(auto x:a){
+        cout<<x.first<<" "<<x.second<<endl;
+    }
     return 0;
 }
 
