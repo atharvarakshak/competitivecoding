@@ -1,3 +1,5 @@
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -24,7 +26,7 @@ template <class T>
 void print_v(vector<T> &v) {  for (auto x : v) cout << x << " "; }
 
 /* UTILS */
-#define MOD 998244353
+#define MOD 1000000007
 #define PI 3.1415926535897932384626433832795
 #define read(type) readInt<type>()
 ll min(ll a,int b) { if (a<b) return a; return b; }
@@ -51,52 +53,50 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int solve()
-{
-    ll n;
-    cin>>n;
-    vll v(n),prefix2(n,0);
-    f(i,0,n) cin>>v[i];
-    if(v[0]==2){
-        prefix2[0]=1;
 
-    }
-    f(i,1,n){
-        if(v[i]==2){
-            prefix2[i]=prefix2[i-1]+1;
-        }
-        else{
-            prefix2[i]=prefix2[i-1];
-        }
-    }
-   
-    ll ans=0;
-    for(int i=0;i<n-1;i++){
-        for(int j=i+1;j<n;j++){
-            if(v[i]==1 && v[j]==3){
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int t;
+    cin >> t;
+    while(t--){
+        int n;
+        cin >> n;
 
-                ans+=prefix2[j]-prefix2[i];
+        map<long long, long long> freq;
+        for (int i = 0; i < n; i++){
+            long long x;
+            cin >> x;
+            freq[x]++;
+        }
+
+        for(auto it = freq.begin(); it != freq.end(); ++it){
+            long long x = it->first;
+            long long count = it->second;
+
+            
+            if(count > 2){
+                long long extra = count - 2;
+                it->second = 2;       
+                freq[x+1] += extra;   
             }
         }
+        
+        bool possible = true;
+
+
+        for(const auto &p : freq){
+
+
+            if(p.second != 2){
+                possible = false;
+                break;
+            }
+        }
+        
+        cout << (possible ? "Yes" : "No") << "\n";
     }
-
-    cout<<(static_cast<ll>(pow(2, ans))  - 1LL)% MOD<<endl;
-    return 0;
-}
-
-
-/* Main()  function */
-int main()
-{
- ios_base::sync_with_stdio(false);
-cin.tie(NULL);  
-    int tc=1;
-    cin>>tc;
-
-    while(tc--)
-    {
-        solve();
-    }
-
+    
     return 0;
 }

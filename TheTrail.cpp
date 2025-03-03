@@ -24,7 +24,7 @@ template <class T>
 void print_v(vector<T> &v) {  for (auto x : v) cout << x << " "; }
 
 /* UTILS */
-#define MOD 998244353
+#define MOD 1000000007
 #define PI 3.1415926535897932384626433832795
 #define read(type) readInt<type>()
 ll min(ll a,int b) { if (a<b) return a; return b; }
@@ -52,35 +52,56 @@ typedef unsigned long long int  uint64;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 int solve()
-{
-    ll n;
-    cin>>n;
-    vll v(n),prefix2(n,0);
-    f(i,0,n) cin>>v[i];
-    if(v[0]==2){
-        prefix2[0]=1;
+{   
+    ll n,m;
+    cin>>n>>m;
+    string s;
+    cin>>s;
+    vector<vector<ll>> mat(n,vector<ll>(m));
+    f(i,0,n){
+        f(j,0,m){
+            cin>>mat[i][j];
+        }
+    } 
+    ll p=0,q=0;
+    ll var ;
 
-    }
-    f(i,1,n){
-        if(v[i]==2){
-            prefix2[i]=prefix2[i-1]+1;
+    for(int i=0;i<s.length();i++){
+        ll temp=0;
+        if(s[i]=='D'){
+            p++;
+            for(int j=0;j<m;j++){
+                temp+=mat[p-1][j];
+            }
+            mat[p-1][q]=-temp;
         }
         else{
-            prefix2[i]=prefix2[i-1];
-        }
-    }
-   
-    ll ans=0;
-    for(int i=0;i<n-1;i++){
-        for(int j=i+1;j<n;j++){
-            if(v[i]==1 && v[j]==3){
-
-                ans+=prefix2[j]-prefix2[i];
+            q++;
+            for(int j=0;j<n;j++){
+                temp+=mat[j][q-1];
             }
+            mat[p][q-1]=-temp;
         }
+
+        var = temp;
+
+    }
+    ll sum=0;
+    for(int j=0;j<m;j++){
+        sum+=mat[n-1][j];
+    }
+    mat[n-1][m-1] = -sum;
+    // if(s[s.length()-1] == 'D'){
+        
+    // }
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cout<<mat[i][j]<<" ";
+        }
+        cout<<endl;
     }
 
-    cout<<(static_cast<ll>(pow(2, ans))  - 1LL)% MOD<<endl;
     return 0;
 }
 
